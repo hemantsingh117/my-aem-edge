@@ -1,20 +1,64 @@
-import { getMetadata } from '../../scripts/aem.js';
-import { loadFragment } from '../fragment/fragment.js';
+export default function decorate(block) {
+  [...block.children].forEach((row, r) => {
+    if (r === 0) {
+      row.classList.add("footer-outrmost");
+      [...row.children].forEach((div, d) => {
+      div.classList.add("footer-child");
+      if (d === 0) {
+        div.classList.add("footer-child-one");
+        (div.querySelectorAll('td')).forEach((td,tdi) =>{
+         
+            td.classList.add(`footer-child-td${tdi + 1}`);
+         
+        });
+      }
+      if (d === 1) {
+        div.classList.add("footer-main-cntnr");
+        (div.querySelectorAll('li')).forEach((td,tdi) =>{
+          td.classList.add(`footer-child-accordin`);
+         
+          td.classList.add(`footer-child-li${tdi + 1}`);
+       
+      });
+      }
+      if (d === 1) {
+        const tdElements = div.querySelectorAll("td");
+        tdElements.forEach((td, index) => {
+          td.classList.add(`footer-card${index + 1}`);
+        });
+      }
+    });
+    }
+    if (r === 1) {
+      row.classList.add("footer-second-outrmost");
+    }
+    
+  });
 
-/**
- * loads and decorates the footer
- * @param {Element} block The footer block element
- */
-export default async function decorate(block) {
-  // load footer as fragment
-  const footerMeta = getMetadata('footer');
-  const footerPath = footerMeta ? new URL(footerMeta, window.location).pathname : '/footer';
-  const fragment = await loadFragment(footerPath);
 
-  // decorate footer DOM
-  block.textContent = '';
-  const footer = document.createElement('div');
-  while (fragment.firstElementChild) footer.append(fragment.firstElementChild);
+ 
+ 
+  // Add accordion functionality
+  const accordionHeaders = block.querySelectorAll('.footer-main-cntnr h3');
+  accordionHeaders.forEach(header => {
+    header.addEventListener('click', () => {
+      // Close all open sections
+      accordionHeaders.forEach(h => {
+        const nextElement = h.nextElementSibling;
+        if (nextElement && nextElement.style.display === 'block') {
+          nextElement.style.display = 'none';
+          h.classList.remove('active');
+        }
+      });
 
-  block.append(footer);
+      // Open the clicked section
+      const nextElement = header.nextElementSibling;
+      if (nextElement && nextElement.style.display !== 'block') {
+        nextElement.style.display = 'block';
+        header.classList.add('active');
+      }
+    });
+  });
 }
+
+
