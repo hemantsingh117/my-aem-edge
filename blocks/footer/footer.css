@@ -53,6 +53,7 @@ ul > li {
   list-style-type: none;
   margin: 0;
   padding: 0;
+  display: none; /* Hide the list items initially */
 }
 
 .footer-main-cntnr h3 {
@@ -78,10 +79,6 @@ ul > li {
 .footer-main-cntnr h3.active::after {
   opacity: 1; /* Show the arrow icon when active */
   transform: rotate(180deg); /* Rotate the arrow icon */
-}
-
-.footer-main-cntnr ul {
-  display: none; /* Hide the list items initially */
 }
 
 .footer-main-cntnr h3.active + ul {
