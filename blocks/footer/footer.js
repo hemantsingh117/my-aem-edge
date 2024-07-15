@@ -3,41 +3,30 @@ export default function decorate(block) {
     if (r === 0) {
       row.classList.add("footer-outrmost");
       [...row.children].forEach((div, d) => {
-      div.classList.add("footer-child");
-      if (d === 0) {
-        div.classList.add("footer-child-one");
-        (div.querySelectorAll('td')).forEach((td,tdi) =>{
-         
+        div.classList.add("footer-child");
+        if (d === 0) {
+          div.classList.add("footer-child-one");
+          div.querySelectorAll('td').forEach((td, tdi) => {
             td.classList.add(`footer-child-td${tdi + 1}`);
-         
-        });
-      }
-      if (d === 1) {
-        div.classList.add("footer-main-cntnr");
-        (div.querySelectorAll('li')).forEach((td,tdi) =>{
-          td.classList.add(`footer-child-accordin`);
-         
-          td.classList.add(`footer-child-li${tdi + 1}`);
-       
+          });
+        }
+        if (d === 1) {
+          div.classList.add("footer-main-cntnr");
+          div.querySelectorAll('li').forEach((li, tdi) => {
+            li.classList.add("footer-child-accordin");
+            li.classList.add(`footer-child-li${tdi + 1}`);
+          });
+          div.querySelectorAll('td').forEach((td, index) => {
+            td.classList.add(`footer-card${index + 1}`);
+          });
+        }
       });
-      }
-      if (d === 1) {
-        const tdElements = div.querySelectorAll("td");
-        tdElements.forEach((td, index) => {
-          td.classList.add(`footer-card${index + 1}`);
-        });
-      }
-    });
     }
     if (r === 1) {
       row.classList.add("footer-second-outrmost");
     }
-    
   });
 
-
- 
- 
   // Add accordion functionality
   const accordionHeaders = block.querySelectorAll('.footer-main-cntnr h3');
   accordionHeaders.forEach(header => {
@@ -60,5 +49,3 @@ export default function decorate(block) {
     });
   });
 }
-
-
