@@ -1,41 +1,42 @@
 .footer {
   background-color: #F0F6E4;
-  padding: 20px;
   cursor: pointer;
 }
 
 .footer-outrmost {
+  padding: 20px;
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
 }
 
-h2 {
+.footer-outrmost h2 {
   font-weight: 600 !important;
   font-size: 16px;
   line-height: 40px;
   text-align: left;
 }
 
-p {
+.footer-outrmost p {
   font-size: 14px;
   font-weight: 400;
   line-height: 21.21px;
   text-align: left;
 }
 
-h3 {
+.footer-outrmost h3 {
   font-size: 16px;
   font-weight: 600 !important;
   line-height: 18.77px;
   text-align: left;
 }
 
-ul > li {
+.footer-main-cntnr ul > li {
   font-size: 14px;
   font-weight: 300;
   line-height: 30px;
   text-align: left;
+  
 }
 
 .footer-child-one table td {
@@ -65,7 +66,7 @@ ul > li {
   display: block;
   position: absolute;
   bottom: 50%;
-  right: 0;
+  right: -20px;
   background-image: url('Vector.png');
   background-size: cover;
   background-position: center;
@@ -73,12 +74,15 @@ ul > li {
   width: 9px;
   height: 4.5px;
   object-fit: contain;
-  opacity: 0;
+
+  transform: rotate(180deg);
+  transition: 0.9s ease, transform 0.3s ease; /* Smooth transition */
+  
 }
 
 .footer-main-cntnr h3.active::after {
-  opacity: 1; /* Show the arrow icon when active */
-  transform: rotate(180deg); /* Rotate the arrow icon */
+
+  transform: rotate(360deg);
 }
 
 .footer-main-cntnr h3.active + ul {
