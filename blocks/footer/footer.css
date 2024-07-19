@@ -36,7 +36,6 @@
   font-weight: 300;
   line-height: 30px;
   text-align: left;
-  
 }
 
 .footer-child-one table td {
@@ -74,14 +73,11 @@
   width: 9px;
   height: 4.5px;
   object-fit: contain;
-
   transform: rotate(180deg);
   transition: 0.9s ease, transform 0.3s ease; /* Smooth transition */
-  
 }
 
 .footer-main-cntnr h3.active::after {
-
   transform: rotate(360deg);
 }
 
